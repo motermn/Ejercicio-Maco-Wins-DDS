@@ -94,5 +94,3 @@ class Tarjeta inherits Efectivo{
 	override method calcularMonto(venta) = super(venta) + self.recargo(venta)
 }
 
-
-
