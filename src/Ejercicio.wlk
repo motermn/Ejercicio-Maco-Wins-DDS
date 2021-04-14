@@ -4,6 +4,10 @@ object macoWins {
 	method ganancias(fecha) = self.ventasDe(fecha).sum({venta => venta.monto()})
 	
 	method ventasDe(fecha) = ventas.filter({unaVenta => unaVenta.conFecha(fecha)})
+	
+	method agregarVenta(nuevaVenta) {
+		ventas.add(nuevaVenta)
+	}
 }
 
 class Prenda { // Es una clase abstracta
@@ -16,7 +20,7 @@ class Prenda { // Es una clase abstracta
 	method fraccionDePrecio(fraccion) = self.precio() * fraccion
 }
 
-class Saco inherits Prenda { // Es medio raro que queden las clases vacías o sin atributos ni comportamiento, pero creo que las reglas del negocio imponene la existencia de las mismas
+class Saco inherits Prenda { // Es medio raro que queden las clases vacías o sin atributos ni comportamiento, pero creo que las reglas del negocio imponenen la existencia de las mismas
 	
 }
 
@@ -58,6 +62,10 @@ class Venta {
 	method montoDeConceptosVendidos() = conceptosVendidos.sum({concepto => concepto.monto()})
 	
 	method sumaDeFraccionesDeConceptos(fraccion) = conceptosVendidos.sum({concepto => concepto.fraccionDeMonto(fraccion)})
+	
+	method agregarConcepto(nuevoConcepto) {
+		conceptosVendidos.add(nuevoConcepto)
+	}
 }
 
 class Concepto {
@@ -72,7 +80,6 @@ class Concepto {
 
 class Efectivo {
 	method calcularMonto(venta) = venta.montoDeConceptosVendidos()
-	
 }
 
 class Tarjeta inherits Efectivo{
